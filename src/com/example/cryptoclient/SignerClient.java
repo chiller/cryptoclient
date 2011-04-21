@@ -1,5 +1,7 @@
 package com.example.cryptoclient;
 
+import com.example.filechooser.FileChooser;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class SignerClient extends Activity {
 	
@@ -17,6 +20,7 @@ public class SignerClient extends Activity {
             Log.v("client", intent.getStringExtra("result"));
         }
     };
+	private int requestCode;
 	
 	
 	/** Called when the activity is first created. */
@@ -29,6 +33,11 @@ public class SignerClient extends Activity {
     @Override
 	protected void onResume() {
 	    super.onResume();
+	    
+	    Intent i = new Intent(this,FileChooser.class);      
+        i.putExtra("request","document");
+        startActivityForResult(i, requestCode);
+        
 	    
 	    IntentFilter filter = new IntentFilter();
         String broadcastid = "servbc3";
@@ -45,4 +54,15 @@ public class SignerClient extends Activity {
         startService(intent);
         
     }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("client","onActivityResult and resultCode = "+resultCode);
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+            Toast.makeText(this, "OK", Toast.LENGTH_LONG).show();
+
+    }
+    
+    
 }
