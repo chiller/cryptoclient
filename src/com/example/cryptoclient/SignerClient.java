@@ -44,7 +44,21 @@ public class SignerClient extends Activity {
         intent.putExtra("signdata", "path");
         
        
-        Handler h = Thread.currentThread().
+        ResultReceiver rr = (ResultReceiver) intent.getParcelableExtra("resultreceiver");
+	      
+	      Bundle response = new Bundle();
+	      response.putString("alma", "korte");
+	      rr.send(1,response);
+	      
+    
+	      /* In service:
+	      ResultReceiver rr = (ResultReceiver) intent.getParcelableExtra("resultreceiver");
+	      
+	      Bundle response = new Bundle();
+	      response.putString("alma", "korte");
+	      rr.send(1,response);
+         */
+        
         intent.putExtra("resultreceiver", 
         
         		new ResultReceiver(null) {
