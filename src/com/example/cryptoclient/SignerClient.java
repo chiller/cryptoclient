@@ -93,6 +93,7 @@ public class SignerClient extends Activity {
 		//EditText view segítségével kérjük be a jelszót 
 		final EditText input = new EditText(this);
 		alert.setView(input);
+		
 		/**Az OK gomb hozzáadása és a handler beállítás
 		   Ekkor a jelszóval együt minden adat megvan és indulhat az aláírás szolgáltatás*/
 		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {	
@@ -118,6 +119,7 @@ public class SignerClient extends Activity {
             public void onReceive(Context context, Intent intent) {
             	//A service válasz feldolgozása
                 Log.v("client", intent.getStringExtra("result"));
+                Toast.makeText(context, intent.getStringExtra("result") , Toast.LENGTH_LONG).show();
             }
         };	        
         //Feliratkozás a broadcastra

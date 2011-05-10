@@ -1,5 +1,8 @@
 package com.example.filechooser;
 
+/***
+ * A fájlkereso listában egy elem
+ */
 public class Option implements Comparable<Option>{
     private String name;
     private String data;
